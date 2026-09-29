@@ -334,7 +334,7 @@ const selections=[
  {done:['6-01'],now:['6-02','6-03','6-05'],next:['6-06','6-09','6-12']}
 ];
 const completedKhatoTitles={'2-04':'تکمیل جریان کاری جدید خرید رقابتی','2-01':'اصلاح عملکرد فیلترهای ارقام و نمایش شماره‌های منطبق','2-02':'اصلاح چیدمان سطوح خطوط رند پس از اعمال فیلتر'};
-const khatoNextTitles=['یکپارچه‌سازی خط و ربط با 118 Pro','امکان عرضه و فروش خط مشتری در مزایده'];
+const khatoNextTitles=['یکپارچه‌سازی خط و ربط با 118 Pro','امکان عرضه و فروش خط توسط مشتری از طریق مزایده'];
 function renderProjects(){DB.projects.forEach((p,i)=>{
  let cards=[...p.streams].map((s,order)=>({s,order,top:ph(s.leadId)||s.ids.map(ph).filter(open).sort(taskOrder)[0]})).sort((a,b)=>a.top&&b.top?taskOrder(a.top,b.top)||a.order-b.order:a.top?-1:b.top?1:a.order-b.order).map(({s})=>{let rows=s.ids.map(ph), openRows=rows.filter(open).sort(taskOrder), top=(ph(s.leadId)&&open(ph(s.leadId))?ph(s.leadId):openRows[0]);return `<div class="stream" data-id="${top?top._id:rows[0]._id}"><h3>${esc(s.name)}</h3><small>${pers(rows.length)} مورد · ${pers(rows.filter(r=>r._group==='done').length)} بسته‌شده · ${pers(openRows.length)} باز</small><p><strong>مهم‌ترین مورد باز:</strong> ${top?esc(displayTitleFor(top)):'مورد بازی در این محور ثبت نشده است.'}</p></div>`}).join('');
  let pick=selections[i];
